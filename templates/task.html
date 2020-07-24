@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <style>
+    .input_btn_2 {display: none;}
+    .input_btn_and_save_btn {margin-left: 75%; margin-top: -320px; margin-bottom: 290px;}
+    .input_task {font-family: charter; width: auto; margin-top: 70px; border: 1px solid black;
+    margin-left: 200px; height: auto; width: 500px; padding-left: 20px;}
+    .output_task {font-family: charter; width: auto; margin-top: 70px; border: 1px solid black;
+    height: auto; width: 500px; padding-left: 20px;}
+    .condition_task {font-family: charter; margin-top: -370px; margin-left: 200px; margin-right: 400px;}
+    .input_and_output_block {display: flex; height: auto;}
+    .btn_save_2 {display: none;}
+    .score_block {margin-top: -350px; margin-bottom: 350px; margin-left: 200px; font-size: 30px;
+             margin-right: 80px; padding-bottom: 20px; color: white;
+             padding-left: 300px; padding-top: 20px; border-radius: 30px;}
+    .FileUpload1 {
+       border: 1px #A9A9A9 solid;
+       background-color: lightblue;
+       color: #000000;
+       font-family:Arial;
+       font-size: 16px;
+       width: 270px;
+    }
+    .Combobox2  {
+        width:280px;
+        height:40px;
+        line-height:33px;
+        border-radius: 2px;
+    }
+    @media (max-width:1230px) {
+        .input_task {width: 400px; height: 250px;}
+        .output_task {width: 400px; height: 250px;}
+    }
+    @media (max-width:1204px) {
+        .input_btn {display: none;}
+        .btn_save {display: none;}
+        .input_btn_2 {margin-left: 200px; margin-top: 30px; display: block;}
+        .btn_save_2 {display: block; margin-left: 200px; margin-bottom: -40px;}
+        .condition_task {margin-right: 40px; margin-top: -600px;}
+        .score_block {padding-top: 5px; padding-bottom: 5px; margin-top: -350px;
+        margin-bottom: 630px; margin-right: 260px; padding-left: 100px;}
+    }
+    @media (max-width:1034px) {
+        .input_and_output_block {display: block;}
+        .input_task {width: 65%;}
+        .output_task {width: 65%; margin-left: 200px; margin-top: -1px;}
+    }
+    @media (max-width:796px) {
+        .score_block {margin-right: 100px;}
+    }
+    @media (max-width:647px) {
+        .input_btn_2 {margin-left: 140px; margin-top: 30px;}
+        .btn_save_2 {margin-left: 140px;}
+        #FileUpload1 {width: 220px; font-size: 14px;}
+        .input_task {margin-left: 140px;}
+        .output_task {margin-left: 140px;}
+        .condition_task {margin-left: 140px;}
+        .score_block {margin-left: 140px; padding-left: 40px;}
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+    <h1 style="text-align: center; margin-bottom: -30px; text-transform: uppercase;">КУРСЫ ПО {{language}}</h1>
+    <div>
+    <div>
+    <h2 style="text-align: center; margin-bottom: -30px; margin-top: 100px;">{{names_tasks}}</h2>
+    <div style="margin-top: -50px; margin-left: -20px; margin-bottom: auto;" class="btn btn-group-vertical">
+        <a style="background: #e6e6fa;" href="/courses" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/courses_icon.png"><br>Курсы</a>
+        <a style="background: #e6e6fa;" href="/forum" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/forum_icon.png"><br>Форум</a>
+        <a style="background: #e6e6fa;" href="/itnews" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/news_icon.png"><br>Новости IT</a>
+        <a style="background: #e6e6fa;" href="/courses/{{language}}/course/{{num}}/doc" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/documentation_icon.png"><br>Учебник</a>
+        <a style="background: #e6e6fa;" href="/courses/{{language}}/course/{{num}}" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/tasks.png"><br>Задачи</a>
+        <a style="background: #e6e6fa;" href="/settings" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/settings_icon.svg"><br>Настройки</a>
+        <a href="https://vk.com/pr0duct_khokhlov" target="_blank" style="background: #c8a2c8;" class="btn btn-light">PRODUCT<br>KHOKHLOV</a>
+    </div>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+        {% if score == 2 %}
+            <div class="score_block" style="background-color: #19b80b;">Сделано!</div>
+        {% elif score == 1 %}
+            <div class="score_block" style="background-color: red;">Доделайте!</div>
+        {% endif %}
+        <div class="input_btn_and_save_btn">
+        <div class="form-group input_btn">
+            <div class="wb_Text1">
+                <input type="file" class="form-control-file Combobox2 FileUpload1" id="photo" name="file">
+            </div>
+        </div>
+        <p>{{ form.submit(type="submit", class="btn btn-primary btn_save", style="margin-left: 173px;") }}</p></div>
+        <h4 class="condition_task">{{condition_task}}</h4>
+    <div class="form-group input_btn_2">
+        <div class="wb_Text1">
+            <input type="file" class="form-control-file Combobox2 FileUpload1" id="photo" name="file">
+        </div>
+    </div>
+    <p>{{ form.submit(type="submit", class="btn btn-primary btn_save_2") }}</p>
+    <div class="input_and_output_block">
+        <div class="input_task">
+            <h4>Ввод:</h4>
+            {% if input_in_task[0] != None %}
+                {% for i in input_in_task %}
+                    <h3 style="margin-top: 30px;">{{i}}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="output_task">
+            <h4>Вывод:</h4>
+            {% if output_in_task != None %}
+                {% for i in output_in_task %}
+                    <h3 style="margin-top: 30px;">{{i}}</h3>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    </form>
+{% else %}
+    <h1 style="text-align: center; color: red; margin-top: 80px;">Вам необходимо зарегистрироваться!</h1>
+{% endif %}
+</div>
+{% endblock %}

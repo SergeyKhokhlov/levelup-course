@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="../../static/css/style.css">
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: -30px;">Форум</h1>
+    <div style="display: flex;">
+    <div style="margin-top: 70px; margin-left: -20px; margin-bottom: auto;" class="btn btn-group-vertical">
+        <a style="background: #e6e6fa;" href="" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/courses_icon.png"><br>Курсы</a>
+        <a style="background: #e6e6fa;" href="/forum" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/forum_icon.png"><br>Форум</a>
+        <a style="background: #e6e6fa;" href="/itnews" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/news_icon.png"><br>Новости IT</a>
+        <a style="background: #e6e6fa;" href="/settings" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/settings_icon.svg"><br>Настройки</a>
+        <a href="https://vk.com/pr0ductkhokhlov" target="_blank" style="background: #c8a2c8;" class="btn btn-light">PRODUCT<br>KHOKHLOV</a>
+    </div>
+{% if current_user.is_authenticated %}
+<form style="margin-top: 70px; margin-left: 90px;" action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.title.label(style="font-size: 20px;") }}<br>
+        {{ form.title(class="form-control", style="width: 400%;", type="string") }}<br>
+    </p>
+    <p>
+        {{ form.question.label(style="font-size: 20px;") }}<br>
+        {{ form.question(class="form-control", style="width: 400%;", type="string") }}<br>
+    </p>
+    <p>
+        {{ form.theme.label(style="font-size: 20px;") }}<br>
+        {{ form.theme(class="form-control", style="width: 400%;",
+        type="string") }}<br>
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% else %}
+    <div>Зарегистрируйтесь, для того чтобы получить доступ к этой странице!</div>
+{% endif %}
+    </div>
+{% endblock %}

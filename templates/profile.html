@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/style.css">
+{% endblock %}
+
+{% block content %}
+<div class="border border-left border-right border-top border-bottom border-{{ colors }} border-rounded">
+    <p style="font-size: 20pt; margin: 10px;">
+        <img class="img-fluid rounded-circle" src="{{ user.avatar }}" alt="" height="250"
+             width="250" vspace="5"
+             hspace="5" align="left" style="margin-right: 20px;">
+        <div style="font-size: 30px; margin-top: 40px;">
+        {% if user.role == "admin" %}
+            Ник: {{ user.name }} <span>&#129332;</span><br>
+        {% else %}
+            Ник: {{ user.name }}<br>
+        {% endif %}
+        Роль: {{ user.role }}<br>
+        Рейтинг: {{ user.raiting }}<br></div>
+        {% if current_user.id == user.id %}
+        <a class="btn btn-warning" href="/edit_profile" style="font-size: 16pt; margin-bottom: 30px; margin-top: 20px;">Изменить профиль</a>
+        <a class="btn btn-danger" href="/logout" style="font-size: 16pt; margin-bottom: 30px; margin-top: 20px;">Выйти</a>
+        {% endif %}
+    </p>
+</div>
+{% endblock %}

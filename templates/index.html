@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="display: flex;">
+<p style="font-size: 27px; margin-top: 7%; margin-left: 40px;"><b>LEVEL UP</b> - это бесплатные курсы по программированию,
+    пройдя которые вы сможете создавать:
+    игры, приложения, сайты и многое другое, вообщем станете на уровень выше.
+    Проходя курсы Вы будете решать интереснейшие задачи,
+    зарабатывать рейтинг, а так же проводить время с пользой!</p>
+<div style="border: 1px solid black; margin-left: 10%; padding-right: 100px; padding-left: 100px;
+    margin-right: 10%; margin-top: 20px;">
+    <p style="font-size: 30px; text-align: center; margin-top: 4%;">Зарегистрироваться</p>
+    <form action="" method="post">
+    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
+    <p>
+        {{ form.email.label(style="margin-left: -25%;") }}<br>
+        {{ form.email(class="form-control", style="margin-left: -25%; width: 150%;", type="email") }}<br>
+        {% for error in form.email.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password.label(style="margin-left: -25%;") }}<br>
+        {{ form.password(class="form-control", style="margin-left: -25%; width: 150%;", type="password") }}<br>
+        {% for error in form.password.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.password_again.label(style="margin-left: -25%;") }}<br>
+        {{ form.password_again(class="form-control", style="margin-left: -25%; width: 150%;", type="password") }}<br>
+        {% for error in form.password_again.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    </p>
+    <p>
+        {{ form.name.label(style="margin-left: -25%;") }}<br>
+        {{ form.name(class="form-control", style="margin-left: -25%; width: 150%;") }}<br>
+        {% for error in form.name.errors %}
+    <p class="alert alert-danger" role="alert">
+        {{ error }}
+    </p>
+    {% endfor %}
+    <p>{{ form.submit(type="submit", style="width: 50%; margin-left: 25%;", class="btn btn-primary") }}</p>
+</form>
+</div>
+</div>
+<div style="text-align: center; background-color: rgb(248, 249, 250); margin-top: 50px;">
+<a style="margin-top: 30px; margin-bottom: 40px;" class="btn btn-light" href="https://vk.com/pr0duct_khokhlov" target="_blank">PRODUCT KHOKHLOV</a>
+</div>
+{% endblock %}

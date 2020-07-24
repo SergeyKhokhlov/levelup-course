@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <title>LEVEL UP</title>
+    <style>
+        .line {margin-left: auto; margin-top: 18px; margin-right: 30px;}
+        .main_title {font-family: impact; margin-left: 5%; margin-right: auto; font-size: 30px;
+        display: flex;}
+        .btn_in {margin-right: 130px; background: white; color: blue; margin-top: 18px;
+                padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;}
+        .btn_reg {display: none;}
+        @media (max-width:607px) {
+            .btn_in {margin-right: 30px; background: white; color: blue; margin-top: 18px;
+                padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;}
+        }
+        @media (max-width:504px) {
+            .line {display: none;}
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-light" style="background: rgb(244, 245, 250);">
+        <a class="navbar-brand main_title" href="/">LEVEL&nbsp;<p style="color: blue;">UP</p></a>
+        {% if current_user.is_authenticated %}
+            <p style="margin-left: auto; margin-right: 20px; margin-top: 18px;">Нас уже {{line}}</p>
+            <a class="navbar-brand" style="margin-right: 10px; background: white; padding-top: 8px;
+            padding-bottom: 8px; padding-right: 30px; padding-left: 30px;"
+               href="/profile/{{ current_user.id }}">{{current_user.name}}</a>
+        {% else %}
+            <p class="line">Нас уже {{line}}</p>
+            <p>
+                <a class="btn btn_in"
+                   href="/login">Войти</a>
+<!--                <a class="btn" style="background: white; color: blue; margin-top: 18px;-->
+<!--                padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;"-->
+<!--                   href="/login">Зарегистрироваться</a>-->
+            </p>
+        {% endif %}
+    </nav>
+</header>
+<main role="main">
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: -30px; margin-left: 100px;">ФОРУМ</h1>
+<!--    <a href="/forum/ask_question" class="btn btn-light"-->
+<!--       style="margin-left: 140px; margin-top: 40px;">Задать вопрос</a><br>-->
+    <div style="display: flex; margin-top: -40px;">
+    <div style="margin-top: 70px; margin-left: -20px; margin-bottom: auto;" class="btn btn-group-vertical">
+        <a style="background: #e6e6fa;" href="/courses" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/courses_icon.png"><br>Курсы</a>
+        <a style="background: #e6e6fa;" href="/forum" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/forum_icon.png"><br>Форум</a>
+        <a style="background: #e6e6fa;" href="/itnews" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/news_icon.png"><br>Новости IT</a>
+        <a style="background: #e6e6fa;" href="/settings" class="btn btn-light">
+            <img width="40" height="40" src="/static/img/settings_icon.svg"><br>Настройки</a>
+        <a href="https://vk.com/pr0duct_khokhlov" target="_blank" style="background: #c8a2c8;" class="btn btn-light">PRODUCT<br>KHOKHLOV</a>
+    </div>
+    <img style="margin-top: 100px; margin-left: auto; margin-right: auto;" width="400" height="350" src="static/img/forum.jpg">
+    </div>
+<!--        {% for item in forum_questions %}-->
+<!--            {% set id_new = item.id %}-->
+<!--            {% if current_user.role == "cleaner" or current_user.role == "admin" %}-->
+<!--                <div style="margin-top: 90px;">-->
+<!--                    <a href="/question_delete/{{ item.id }}"><img width="3%" height="6%"-->
+<!--                                                          src="static/img/delete_button.png"></a>-->
+<!--                </div>-->
+<!--            {% endif %}-->
+<!--            <div>-->
+<!--                <a style="text-decoration: none;" href="/forum/question/{{ item.id }}">-->
+<!--                    <div style="background-color: #f5f5f5; margin-top: 100px;-->
+<!--                margin-right: 40px; padding-left: 10px; width: 800px; min-width: auto;-->
+<!--                         padding-top: 20px; padding-bottom: 40px;"-->
+<!--                     class="col-md6 border rounded">-->
+<!--                    <div style="padding-top: 20px; padding-left: 40px;">-->
+<!--                        <h4>{{item.title}}</h4>-->
+<!--                    </div>-->
+<!--                    </div></a>-->
+<!--            </div> -->
+<!--        {% endfor %}-->
+{% endblock %}
