@@ -54,12 +54,12 @@ def index():
         if form.validate_on_submit():
             if form.password.data != form.password_again.data:
                 return render_template('register.html', form=form, message="Пароли не совпадают!",
-                                       count=count)
+                                       line=line)
             if sessions.query(users.User).filter(users.User.email == form.email.data).first():
-                return render_template('register.html', form=form, count=count,
+                return render_template('register.html', form=form, line=line,
                                        message="Данный email уже занят")
             if len(form.name.data) > 20:
-                return render_template('register.html', form=form, count=count,
+                return render_template('register.html', form=form, line=line,
                                        message="Данное имя слишком длинное!")
             user = users.User(name=form.name.data,
                               email=form.email.data,
@@ -71,6 +71,37 @@ def index():
             sessions.commit()
             return redirect('/login')
         return render_template("index.html", form=form, line=line)
+
+
+@app.route("/registration", methods=["GET", "POST"])
+def register():
+    form = registration.RegisterForm()
+    sessions = db_session.create_session()
+    line = count_users()
+    if form.validate_on_submit():
+        form = registration.RegisterForm()
+        sessions = db_session.create_session()
+        if form.validate_on_submit():
+            if form.password.data != form.password_again.data:
+                return render_template('register.html', form=form, message="Пароли не совпадают!",
+                                       line=line)
+            if sessions.query(users.User).filter(users.User.email == form.email.data).first():
+                return render_template('register.html', form=form, line=line,
+                                       message="Данный email уже занят")
+            if len(form.name.data) > 20:
+                return render_template('register.html', form=form, line=line,
+                                       message="Данное имя слишком длинное!")
+            user = users.User(name=form.name.data,
+                              email=form.email.data,
+                              password=form.password.data,
+                              role="user",
+                              raiting=0)
+            user.set_password(form.password.data)
+            sessions.add(user)
+            sessions.commit()
+            return redirect('/login')
+        return render_template("index.html", form=form, line=line)
+    return render_template('register.html', form=form, line=line)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -382,6 +413,12 @@ def itnews():
 def settings():
     line = count_users()
     return render_template("settings.html", line=line)
+
+
+@app.route("/helper")
+def helper():
+    line = count_users()
+    return render_template("helper.html", line=line)
 
 
 def main():

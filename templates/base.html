@@ -12,15 +12,45 @@
         .line {margin-left: auto; margin-top: 18px; margin-right: 30px;}
         .main_title {font-family: impact; margin-left: 5%; margin-right: auto; font-size: 30px;
         display: flex;}
-        .btn_in {margin-right: 130px; background: white; color: blue; margin-top: 18px;
+        .btn_in {margin-right: 130px; background: white; color: blue; margin-top: 10px;
                 padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;}
-        .btn_reg {display: none;}
-        @media (max-width:607px) {
-            .btn_in {margin-right: 30px; background: white; color: blue; margin-top: 18px;
+        .btn_reg {display: none; background: white; color: blue; margin-top: 10px; margin-left: -13%;
+                margin-right: 10%;
                 padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;}
+        @media (max-width:1157px) {
+            .btn_reg {display: block; margin-right: 20px; margin-left: -95px;}
+        }
+        @media (max-width:1078px) {
+            .btn_reg {margin-left: -10%;}
+        }
+        @media (max-width:978px) {
+            .btn_reg {margin-left: -5%;}
+        }
+        @media (max-width:860px) {
+            .btn_reg {margin-left: -2%;}
+        }
+        @media (max-width:818px) {
+            .btn_reg {margin-left: -10%;}
+            .line {display: none;}
+        }
+        @media (max-width:701px) {
+            .btn_reg {margin-left: -12%;}
+            .line {display: none;}
+        }
+        @media (max-width:651px) {
+            .main_title {margin-left: 220px; margin-right: 200px;}
+            .btn_in {margin-left: 20px; padding-left: 85px; padding-right: 85px; margin-right: 0px;}
+            .btn_reg {margin-right: 20px;}
+        }
+        @media (max-width:547px) {
+            .main_title {margin-left: 200px; margin-right: 200px;}
+            .btn_in {margin-left: 10px; padding-left: 85px; padding-right: 85px; margin-right: 0px;}
+            .btn_reg {margin-right: 20px;}
         }
         @media (max-width:504px) {
-            .line {display: none;}
+            .main_title {margin-left: 190px; margin-right: 200px;}
+            .btn_in {margin-left: 140px; padding-left: 85px; padding-right: 85px; margin-right: 30px;}
+            .btn_reg {margin-left: 140px;}
         }
     </style>
     {% block head %}{% endblock %}
@@ -36,13 +66,12 @@
                href="/profile/{{ current_user.id }}">{{current_user.name}}</a>
         {% else %}
             <p class="line">Нас уже {{line}}</p>
-            <p>
+
                 <a class="btn btn_in"
                    href="/login">Войти</a>
-<!--                <a class="btn" style="background: white; color: blue; margin-top: 18px;-->
-<!--                padding-right: 30px; padding-left: 30px; padding-top: 8px; padding-bottom: 8px;"-->
-<!--                   href="/login">Зарегистрироваться</a>-->
-            </p>
+                <a class="btn btn_reg"
+                   href="/registration">Зарегистрироваться</a>
+
         {% endif %}
     </nav>
 </header>
